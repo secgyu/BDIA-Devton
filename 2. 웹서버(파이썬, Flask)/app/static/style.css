@@ -1,0 +1,155 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  background-color: #88ce93;
+  background-color:#def3d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+body.layout-login {
+  background:url(./image/login_bg.jpg) no-repeat center/cover;
+}
+.container {
+  text-align: center;
+}
+
+label {
+  text-align: start;
+}
+
+.title:before {
+  content:'';
+  display:block;
+  margin:0 auto 18px;
+  background:#fff;
+  width:30px;
+  height:4px;
+}
+.title {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top:0;
+  margin-bottom: 28px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter:blur(4px);
+  padding: 40px 60px 50px;
+  border-radius: 20px;
+  width: 420px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.14);
+}
+
+.login-title {
+  color: #fff;
+  font-size: 32px;
+  margin:0;
+  font-family: "Poppins";
+  padding-bottom:30px;
+  margin:0;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label{ 
+  display: block;
+  font-weight:500;
+  color: #e1e1e1;
+  font-size:14px;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px 0;
+  border-top: none;
+  font-size:18px;
+  background:transparent;
+  border-left: none;
+  color:#fff;
+  border-right: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: all .3s ease;
+}
+
+.input-group input:focus {
+  border-bottom-color: #4bc983;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  border:none;
+  color:#fff;
+  border-bottom: 1px solid #fff;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login-button {
+  background-color: rgba(93, 194, 160, 1);
+  width:100%;
+  color: #fff;
+  border: none;
+  margin-top:20px;
+  padding: 14px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all .4s ease;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+.login-button:after {
+  content:'';
+  width:20px;
+  vertical-align: -4px;
+  margin-left:0;
+  opacity:0;
+  position: absolute;
+  height:20px;
+  display:inline-block;
+  transition:all .3s ease;
+  background: url(./image/login_arrow.svg) no-repeat center/contain;
+}
+
+.login-button:hover {
+  background-color:#22d171;
+}
+
+.login-button:hover:after {
+  transform: translateX(10px);
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+
+  .title {
+    font-size:20px;
+  }
+  .login-box {
+    width:300px;
+    padding: 30px;
+  }
+  .login-title {
+    font-size: 24px;
+    padding-bottom:24px;
+  }
+  .login-button {
+    margin-top:10px;
+  }
+}

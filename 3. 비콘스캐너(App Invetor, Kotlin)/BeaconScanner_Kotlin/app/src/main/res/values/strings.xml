@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BeaconDistance</string>
+
+    <string name="str_far">Far</string>
+    <string name="str_near">Near</string>
+    <string name="str_immediate">Immediate</string>
+
+    <string name="button_login">LogIn</string>
+    <string name="hint_login_id">아이디를 입력해주세요</string>
+    <string name="hint_login_pw">비밀번호를 입력해주세요</string>
+</resources>

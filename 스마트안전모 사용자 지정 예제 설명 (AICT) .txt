@@ -1,0 +1,19 @@
+웹서버 접속방법
+1.	smartadmin.aictlab.com 접속
+2.	아이디: admin
+	PW: aict2024!!
+	인증코드: AICT
+	작성 후 로그인
+
+Node-red를 이용한 테스트
+1.	smartadmin.aictlab.com/nodered/ui/ 접속
+2. 	Status 토픽 (기기상태값)과 Sensor 토픽 (착용상태감지)에 값 추가 후 Submit
+3. 	관리자페이지 접속 후 올바르게 값이 전송됨을 확인
+
+
+접속 가능 도메인
+1.	smartadmin.aictlab.com: 관리자페이지
+2.	smartadmin.aictlab.com/nodered: Node-red 설정 페이지
+3.	smartadmin.aictlab.com/nodered/ui/: Node-red 대시보드 페이지
+
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>기기 상태</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='device.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  </head>
+  <body class="device-status-body">
+    <header class="header">
+      <h1 class="header-title">스마트 안전모</h1>
+      <div class="user-info">
+        <div class="account">
+          <!-- <img src="{{ url_for('static', filename='image/user.png') }}" alt="user"> -->
+          <div>관리자ID님</div>
+        </div>
+        <a href="/" class="logout">
+          <button class="logout-button"></button>
+        </a>
+      </div>
+    </header>
+
+    <div class="device-manage">
+      <h1 class="page-title">기기 상태 관리</h1>
+      <div class="search-wrap">
+        <div class="search-options">
+          <div class="input-box">
+            <input type="radio" id="all" name="active_option" value="all" checked>
+            <label for="all">전체</label>
+          </div>
+          <div class="input-box">
+            <input type="radio" id="run" name="active_option" value="run">
+            <label for="run">켜짐</label>
+          </div>
+          <div class="input-box">
+            <input type="radio" id="stop" name="active_option" value="stop">
+            <label for="stop">꺼짐</label>
+          </div>
+        </div>
+        <div class="current_device">
+          <span>켜진 기기 / 전체 기기 <p> {{devices | selectattr('전원상태', 'equalto', true) | list | length}} / {{devices | length}} </p></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="device-status-container">
+      <div class="table-style">
+        <table class="device-status-table">
+          <thead>
+            <tr>
+              <!--<th class="table-header">ID</th>-->
+              <th class="table-header">디바이스명</th>
+              <th class="table-header">전원상태</th>
+              <th class="table-header">착용상태</th>
+              <th class="table-header">최근 켠 시간</th>
+              <th class="table-header">마지막 끈 시간</th>
+              <th class="table-header">비상</th>
+              <th class="table-header">삭제</th> <!-- 삭제 버튼 열 추가 -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for device in devices %}
+            <tr>
+              <!--<td class="table-cell">{{ device.id }}</td> -->
+              <td class="table-cell">{{ device.디바이스명 }}</td>
+              <td class="table-cell">{{ '켜짐' if device.전원상태 else '꺼짐' }}</td>
+              <td class="table-cell">{{ '착용' if device.착용상태 else '미착용' }}</td>
+              <td class="table-cell">{{ device.동작시간 }}</td>
+              <td class="table-cell">{{ ' ' if device.마지막동작시간 == "0" else device.마지막동작시간}}</td>
+              <td class="table-cell">
+                {{ '' if device.비상 else ''}}
+              </td>       
+              <td class="table-cell">
+                <!-- 삭제 버튼이 포함된 폼 추가 -->
+                <form action="/delete_device/{{ device.id }}" method="POST" class="delete-form">
+                  <button type="submit" class="delete-button">삭제</button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+      <script>
+        const isMobileSize = window.innerWidth < 440;
+        
+        function getMobileWidth(동작시간) {
+          const date = new Date(동작시간);
+          return isMobileSize ? date.getDate()+' '+ date.getHours()+':'+ date.getMinutes() : 동작시간;
+        }
+
+
+        const fetcher = () =>
+          fetch("/status_devices")
+            .then((data) => data.json())
+            .then((devices) => {
+              //const devices = devices0.map(device => ({...device, '전원상태':Math.random() > 0.5})) 
+              const option = document.querySelector('input[name="active_option"]:checked')?.value
+              let devices_filtered;
+              const run_devices = devices.filter(device => device.전원상태)
+              const stop_devices = devices.filter(device => !device.전원상태)
+
+              if(option === 'all'){
+                devices_filtered = [...devices]
+              } else if (option === 'run') {
+                devices_filtered = run_devices
+              } else if (option === 'stop') {
+                devices_filtered = stop_devices
+              }
+              const tbody = document.querySelector("tbody");
+              const device = devices_filtered[0];
+              const data2 = devices_filtered.map((device) => {
+                const tr = document.createElement("tr");
+                
+                tr.innerHTML = `
+                  <td class="table-cell">${device.디바이스명}</td>
+                  <td class="table-cell">${device.전원상태 ? "켜짐" : "꺼짐"}</td>
+                  <td class="table-cell">${device.착용상태 ? "착용" : "미착용"}</td>
+                  <td class="table-cell">${device.동작시간}</td>
+                  <td class="table-cell">${device.마지막동작시간 && device.마지막동작시간 !== "0" ? getMobileWidth(device.마지막동작시간) : " "}</td>
+                  <td class="table-cell">${device.비상 ? '<i class="fa-solid fa-triangle-exclamation"></i>' : ' '}</td>
+                  <td class="table-cell">
+                    <form action="/delete_device/${device.id}" method="POST" class="delete-form">
+                      <button type="submit" class="delete-button">삭제</button>
+                    </form>
+                  </td>`;
+                    return tr;
+              });
+              tbody.replaceChildren(...data2);
+              const current_device =  document.querySelector(".current_device span");
+              current_device.innerHTML = `켜진 기기 / 전체 기기 <p> ${run_devices.length} / ${devices.length} </p>`
+              console.log(data2)
+              
+              
+            });
+        setInterval(fetcher, 500);
+      </script>
+  </body>
+</html>

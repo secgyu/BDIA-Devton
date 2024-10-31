@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.aos.beacondistance.MainActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:background="@drawable/app_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/badge_far"
+            style="@style/white_title_bold"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_far"
+            android:gravity="center"
+            android:text="@string/str_far"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16"/>
+
+        <TextView
+            android:id="@+id/badge_near"
+            style="@style/white_title_bold"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_near"
+            android:gravity="center"
+            android:text="@string/str_near"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toTopOf="@id/badge_immediate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/badge_far" />
+
+        <TextView
+            android:id="@+id/badge_immediate"
+            style="@style/white_title_bold"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_immediate"
+            android:gravity="center"
+            android:text="@string/str_immediate"
+            android:paddingVertical="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8"/>
+
+        <TextView
+            android:id="@+id/set_list_button_01"
+            style="@style/white_title_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_far"
+            android:gravity="center"
+            android:onClick="@{activity::setListlist01}"
+            android:text="LIST1"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/set_list_button_02"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/set_list_button_02"
+            style="@style/white_title_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_far"
+            android:gravity="center"
+            android:onClick="@{activity::setListlist02}"
+            android:text="LIST2"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/set_list_button_03"
+            app:layout_constraintStart_toEndOf="@id/set_list_button_01" />
+
+
+        <TextView
+            android:id="@+id/set_list_button_03"
+            style="@style/white_title_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_bg_far"
+            android:gravity="center"
+            android:onClick="@{activity::setListlist03}"
+            android:text="LIST3"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/set_list_button_02" />
+
+        <com.aos.beacondistance.ui.DrawingView
+            android:id="@+id/circle_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,13 @@
+ESP32_Devkit:
+ESP32의 대형버전으로 스마트안전모에 들어갑니다.
+
+ESP32_C3_SuperMini:
+ESP32의 소형버전으로 클립형, 목걸이형등 소형 비콘에 들어갑니다.
+
+기능:
+1. 2개의 압력센서를 통한 착용상태감지
+2. 패닉버튼과 부저, RGB LED를 통한 사용자 위험 알림
+3. 저전력 BLE를 통한 거리 탐지
+4. 두 개의 토픽(aict/status1, act/sensor1) 발행을 통해 서버와 MQTT 통신
+5. LWT(Last Will and testament) 메세지를 통해 전원OFF 감지
+6. WiFi 2.4G 연결을 통해 인터넷 통신
