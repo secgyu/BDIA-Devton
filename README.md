@@ -65,6 +65,6 @@
 - [**추지우** (Project Manager)](https://github.com/So-ko-nyun)
 - [**김규민** (Developer)](https://github.com/secgyu)
 - [**이승준** (Hardware Specialist)](https://github.com/username3)
-- [**이재민** (Software Engineer)](https://github.com/username4)
+- [**이재민** (Soldering)](https://github.com/username4)
 - [**한수혁** (Cloud Specialist)](https://github.com/handylan)
-- [**한윤성** (UX/UI Designer)](https://github.com/username6)
+- [**한윤성** (Document work)](https://github.com/username6)
